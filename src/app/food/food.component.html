@@ -1,0 +1,44 @@
+<div *ngIf="name">Вы пытаетесь найти пиво с именем: {{name}}<br /></div>
+<input [(ngModel)]="name"/>
+
+<button class="btn btn-info" (click)="sub_random()">Вывести случайное пиво</button>
+<button class="btn btn-info" (click)="sub_name(name)" ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." popoverTitle="Popover on right" placement="right">Вывести пиво во алфавиту</button>
+<div *ngIf="done_1">
+  <div class="" *ngFor="let recipe of recipes | paginate: { itemsPerPage: 10, currentPage: p }" >
+    <div class="simple">
+
+      <h2 (click)="toggleEvent(recipe)">{{recipe.name}}</h2>
+      <div class="content clearfix" [ngClass]="{'hidden': !recipe.open}">
+        <div style="padding-top:10px"><img src="{{recipe.image_url}}" /><span> Впервые был сварен: {{recipe.first_brewed}}</span></div>
+        <p style="margin-top:10px; font-size: 20px">Полезные советы: {{recipe.brewers_tips}}</p>
+        <ul style="margin-top:10px; font-size: 20px" >Жратва к пиву: <li *ngFor="let food of recipe.food_pairing">{{food}}</li></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<div *ngIf="done">
+  <div *ngFor="let recipe of recipes | paginate: { itemsPerPage: 10, currentPage: p }">
+    <div class="simple">
+
+      <h2 (click)="toggleEvent(recipe)">{{recipe.name}}</h2>
+      <div class="content clearfix" [ngClass]="{'hidden': !recipe.open}">
+        <div style="padding-top:10px"><img src="{{recipe.image_url}}" /><span> Впервые был сварен: {{recipe.first_brewed}}</span></div>
+        <p style="margin-top:10px; font-size: 20px">Полезные советы: {{recipe.brewers_tips}}</p>
+        <ul style="margin-top:10px; font-size: 20px">Жратва к пиву: <li *ngFor="let food of recipe.food_pairing">{{food}}</li></ul>
+      </div>
+    </div>
+  </div>
+</div>
+<pagination-controls *ngIf="!recipe" (pageChange)="p = $event" autoHide="true"></pagination-controls>-->
+
+<div>
+  <div *ngFor="let member of members | paginate: { itemsPerPage: 10, currentPage: p }">
+    <div class="simple" >
+
+      <h2 (click)="toggleEvent(recipe)">{{member.character.name}}</h2>
+      <p>{{member.character.level}}</p>
+    </div>
+  </div>
+</div>
+<pagination-controls  (pageChange)="p = $event" autoHide="true"></pagination-controls>
